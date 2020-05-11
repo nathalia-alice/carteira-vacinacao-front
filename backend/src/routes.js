@@ -18,7 +18,7 @@ routes.get('/tipousuarios', TipoUsuariosController.index);
 
 routes.post('/vacinas', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        name: Joi.string().required(),
+        name_vacina: Joi.string().required(),
         description: Joi.string().required()
     })
 }), VacinasController.create);
@@ -39,11 +39,14 @@ routes.post('/usuarios', celebrate({
         complemento: Joi.string(),
         nascimento: Joi.string().required(),
         telefone: Joi.string().required(),
-        ativo: Joi.boolean().required()
+        ativo: Joi.boolean().required(),
+        type: Joi.string().required(),
+        email: Joi.string().required(),
+        senha: Joi.string().required()
     })
 }), UsuariosController.create);
 
-routes.get('/usuarios', UsuariosController.index);
+routes.get('/usuarios', UsuariosController.getUsuariosComVacinas);
 
 routes.post('/vacinasxusuario', celebrate({
     [Segments.BODY]: Joi.object().keys({

@@ -3,8 +3,8 @@ exports.up = function (knex) {
     return knex.schema.createTable('usuarios', function (table) {
         table.string('id').primary();
         table.string('name').notNullable();
-        table.string('cpf').notNullable();
-        table.string('cnpj').notNullable();
+        table.string('cpf');
+        table.string('cnpj');
         table.string('cep').notNullable();
         table.string('rua').notNullable();
         table.string('bairro').notNullable();
@@ -15,6 +15,9 @@ exports.up = function (knex) {
         table.string('nascimento').notNullable();
         table.string('telefone').notNullable();
         table.boolean('ativo').notNullable();
+        table.string('type').notNullable();
+        table.string('email').notNullable();
+        table.string('senha').notNullable();
     })
 };
 

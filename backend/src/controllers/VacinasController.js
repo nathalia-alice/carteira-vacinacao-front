@@ -3,18 +3,18 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response){
-        const ongs = await connection('vacinas').select('*');
+        const vacinas = await connection('vacinas').select('*');
     
-        return response.json(ongs);
+        return response.json(vacinas);
     },
 
     async create(request, response){
-        const { name, description } = request.body;
+        const { name_vacina, description } = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
 
         await connection('vacinas').insert({
             id,
-            name,
+            name_vacina,
             description
         });
 

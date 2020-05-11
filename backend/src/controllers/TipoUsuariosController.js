@@ -3,9 +3,9 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response){
-        const ongs = await connection('tipousuarios').select('*');
+        const tipoUsuarios = await connection('tipousuarios').select('*');
     
-        return response.json(ongs);
+        return response.json(tipoUsuarios);
     },
 
     async create(request, response){

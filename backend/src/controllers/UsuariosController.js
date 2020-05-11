@@ -3,13 +3,13 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response) {
-        const ongs = await connection('usuarios').select('*');
+        const usuarios = await connection('usuarios').select('*');
 
-        return response.json(ongs);
+        return response.json(usuarios);
     },
 
     async create(request, response) {
-        const { name, cpf, cnpj, cep, rua, bairro, cidade, estado, numero, complemento, nascimento, telefone, ativo } = request.body;
+        const { name, cpf, cnpj, cep, rua, bairro, cidade, estado, numero, complemento, nascimento, telefone, ativo, type, email, senha } = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
 
         await connection('usuarios').insert({
@@ -26,10 +26,18 @@ module.exports = {
             complemento,
             nascimento,
             telefone,
-            ativo
+            ativo,
+            type,
+            email,
+            senha
         });
 
         return response.json({ id });
     },
 
+    async getUsuariosComVacinas(request, response){
+        const usuariosComVacinas = await connection('usuarios').select('*');
+        return response.json(usuariosComVacinas);
+       
+    }
 }
