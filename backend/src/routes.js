@@ -28,8 +28,7 @@ routes.get('/vacinas', VacinasController.index);
 routes.post('/usuarios', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
-        cpf: Joi.string(),
-        cnpj: Joi.string(),
+        doc: Joi.string(),
         cep: Joi.string().required(),
         rua: Joi.string().required(),
         bairro: Joi.string().required(),
@@ -39,7 +38,7 @@ routes.post('/usuarios', celebrate({
         complemento: Joi.string(),
         nascimento: Joi.string().required(),
         telefone: Joi.string().required(),
-        ativo: Joi.boolean().required(),
+        ativo: Joi.boolean(),
         type: Joi.string().required(),
         email: Joi.string().required(),
         senha: Joi.string().required()

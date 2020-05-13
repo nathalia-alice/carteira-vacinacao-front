@@ -3,8 +3,9 @@ exports.up = function (knex) {
     return knex.schema.createTable('usuarios', function (table) {
         table.string('id').primary();
         table.string('name').notNullable();
-        table.string('cpf');
-        table.string('cnpj');
+        table.string('doc').notNullable();
+        table.boolean('cpf').notNullable();
+        table.boolean('cnpj').notNullable();
         table.string('cep').notNullable();
         table.string('rua').notNullable();
         table.string('bairro').notNullable();
