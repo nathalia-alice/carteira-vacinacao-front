@@ -1,0 +1,78 @@
+.register-container  form{
+    width: 100%;
+    max-width: 1120px;
+    /* height: 100vh; */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-container .content{
+    width: 100%;
+    padding: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register-container .content section{
+    width: 100%;
+    margin: 20px;
+    /* max-width: 380px; */
+}
+
+.register-container .content section h3{
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.register-container .content section p{
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+    margin-bottom: 30px;
+}
+
+.register-container .content  h3{
+    font-size: 18px;
+    color: #000;
+    line-height: 32px;
+    margin-bottom: 20px;
+}
+
+.register-container .content section{
+    width: 100%;
+    /* max-width: 450px; */
+}
+
+.register-container .content form input,
+.register-container .content form select{
+    margin-top: 8px;
+}
+
+.register-container .content form .input-group{
+    display: flex;
+}
+
+.register-container .content form .input-group input + input{
+    margin-left: 8px;
+}
+@media only screen and (max-width: 1200px) {
+    .register-container form{
+        display: block;
+    }
+    .back-link{
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .register-container .content {
+        padding: 30px;
+        display: block;
+    }
+    .register-container .content section {
+        margin: 0;
+    }
+}
