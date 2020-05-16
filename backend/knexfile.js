@@ -3,12 +3,12 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: process.env.KNEX_CLIENT,
     connection: {
-      filename: './src/database/db.sqlite'
+      filename: process.env.KNEX_FILENAME
     },
     migrations:{
-      directory: './src/database/migrations'
+      directory: process.env.KNEX_DIRECTORY
     },
     useNullAsDefault: true,
   },
