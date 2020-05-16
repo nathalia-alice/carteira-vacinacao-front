@@ -9,8 +9,10 @@ module.exports = {
     },
 
     async create(request, response) {
-        const { name, doc, cep, rua, bairro, cidade, estado, numero, complemento, nascimento, telefone, type, email, senha } = request.body;
+        const { name, doc, cep, rua, bairro, cidade, estado, numero, complemento, nascimento, telefone, type, email, senhaNormalize } = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
+        const senha = crypto.createHash('md5').update(senhaNormalize).digest("hex");
+       
         var ativo= false;
         var cpf = false;
         var cnpj = false;
@@ -47,8 +49,8 @@ module.exports = {
     },
 
     async getUsuariosComVacinas(request, response){
-        console.log(request.userId);
         const usuariosComVacinas = await connection('usuarios').select('*');
+       
         return response.json(usuariosComVacinas);
        
     }

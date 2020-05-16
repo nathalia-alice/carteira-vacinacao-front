@@ -21,7 +21,7 @@ export default function Register(){
     const [telefone, setTelefone] = useState('');
     const [type, setType] = useState('');
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [senhaNormalize, setSenha] = useState('');
 
     const history = useHistory();
     async function handleRegister(event){
@@ -41,7 +41,7 @@ export default function Register(){
             telefone,
             type,
             email,
-            senha,
+            senhaNormalize,
         };
 
         try{
@@ -91,7 +91,7 @@ export default function Register(){
                     <input 
                         type="password" 
                         placeholder="Senha"
-                        value={senha}
+                        value={senhaNormalize}
                         onChange={e=> setSenha(e.target.value)} 
                     />
                     <input 
