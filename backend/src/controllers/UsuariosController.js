@@ -47,6 +47,7 @@ module.exports = {
     },
 
     async getUsuariosComVacinas(request, response){
+        console.log(request.userId);
         const usuariosComVacinas = await connection('usuarios').select('*');
         return response.json(usuariosComVacinas);
        

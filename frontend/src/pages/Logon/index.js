@@ -10,18 +10,26 @@ import logoImg from  '../../assets/saúde.png';
 import loginMedico from  '../../assets/login-medico.png';
 
 export default function Logon(){
-    const [id, setId] = useState('');
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const history = useHistory();
+
     async function handleLogin(event){
         event.preventDefault();
 
-        try{  
+        api.post('login', {
+            user,
+            password
+         })
+        .then(response => {
+            localStorage.setItem('token', response.data.token);
+            
             history.push('/profile');
-
-        }catch(err){
-            console.error("Erro:", err);
-        }
-
+        })
+        .catch(error => {
+           setMessage(error.response.data.message);
+        })
     }
 
     return (
@@ -33,14 +41,15 @@ export default function Logon(){
                     <h1>Faça seu login</h1>
                     <input 
                         placeholder="Usuário"
-                        value={id}
-                        onChange={e=> setId(e.target.value)}
+                        value={user}
+                        onChange={e=> setUser(e.target.value)}
                     />
                      <input 
                         placeholder="Senha"
-                        value={id}
-                        onChange={e=> setId(e.target.value)}
+                        value={password}
+                        onChange={e=> setPassword(e.target.value)}
                     />
+                    <text>{message}</text>
                     <button className="button" type="submit">Entrar</button>
                     <Link className="back-link" to="/register">
                         <FiLogIn size={16} color="#E02041"></FiLogIn>

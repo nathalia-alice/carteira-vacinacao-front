@@ -58,15 +58,15 @@ routes.post('/vacinasxusuario', celebrate({
 routes.get('/vacinasxusuario', VacinasPorUsuarioController.index);
 
 routes.post('/login', (req, res, next) => {
-    if(req.body.user === 'luiz' && req.body.pwd === '123'){
+    if(req.body.user === 'luiz' && req.body.password === '123456'){
       //auth ok
       const id = 1; //esse id viria do banco de dados
       var token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: 900 // expires in 15min
       });
-      res.status(200).send({ auth: true, token: token, id : "teste" });
+      res.status(200).send({ auth: true, message: "Login realizado com sucesso!", token: token });
     }else{
-        res.status(401).send({ message: "Login inválido!" });
+        res.status(400).send({ auth: false, message: "Login inválido!" });
     }
 
   })
