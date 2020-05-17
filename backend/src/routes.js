@@ -1,7 +1,6 @@
 const express = require('express');
 const {celebrate, Segments, Joi} = require('celebrate');
 
-const TipoUsuariosController = require('./controllers/TipoUsuariosController')
 const VacinasController = require('./controllers/VacinasController')
 const UsuariosController = require("./controllers/UsuariosController")
 const VacinasPorUsuarioController = require("./controllers/VacinasPorUsuarioController")
@@ -10,14 +9,6 @@ const LoginController = require("./controllers/LoginController")
 const routes = express.Router();
 var jwt = require('jsonwebtoken');
 
-
-routes.post('/tipousuarios', celebrate({
-    [Segments.BODY]: Joi.object().keys({
-        name: Joi.string().required()
-    })
-}), TipoUsuariosController.create);
-
-routes.get('/tipousuarios', TipoUsuariosController.index);
 
 routes.post('/vacinas', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -50,6 +41,12 @@ routes.post('/usuarios', celebrate({
 
 routes.get('/usuarios', verifyJWT, UsuariosController.getUsuariosComVacinas);
 
+routes.delete('/usuarios/:id', celebrate({
+    [Segments.PARAMS]: Joi.object({
+        id: Joi.string().required()
+    })
+}), UsuariosController.delete);
+
 routes.post('/vacinasxusuario', celebrate({
     [Segments.BODY]: Joi.object().keys({
         id_vacina: Joi.string().required(),
@@ -58,7 +55,7 @@ routes.post('/vacinasxusuario', celebrate({
     })
 }), VacinasPorUsuarioController.create);
 
-routes.get('/vacinasxusuario', VacinasPorUsuarioController.index);
+routes.get('/vacinasxusuario', verifyJWT, VacinasPorUsuarioController.index);
 
 routes.post('/login', (req, res) => LoginController.login(req, res));
 

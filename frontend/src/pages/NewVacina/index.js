@@ -8,8 +8,7 @@ import './styles.css'
 export default function NewVacina(){
     const [id_vacina, setVacina] = useState('');
     const [id_usuario, setUsuario] = useState('');
-    const [vacina, getVacina] = useState('');
-    const [date, setDate] = useState(new Date());
+    const date = new Date();
     
     const history = useHistory();
     

@@ -64,8 +64,8 @@ export default function Register(){
                     <h3>Dados Cadastrais</h3>
                     <select onChange={e => setType(e.target.value)}>
                         <option value="">Selecione seu perfil</option>
-                        <option value="61dd6c71">Posto de Saúde</option>
-                        <option value="4321740e">Cidadão</option>
+                        <option value="posto-saude">Posto de Saúde</option>
+                        <option value="cidadao">Cidadão</option>
                     </select>
                     <input 
                         placeholder="Nome Completo"

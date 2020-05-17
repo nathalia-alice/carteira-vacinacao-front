@@ -35,8 +35,8 @@ export default function Logon(){
     return (
         <div className="logon-container">
             <section className="form">
-                <img class="icon-title" src={logoImg} alt="Carteira de Vacinação Online"></img> 
-                <text class="title">Carteira de Vacinação Online</text>
+                <img className="icon-title" src={logoImg} alt="Carteira de Vacinação Online"></img> 
+                <span className="title">Carteira de Vacinação Online</span>
                 <form onSubmit={handleLogin}>
                     <h1>Faça seu login</h1>
                     <input 
@@ -49,7 +49,7 @@ export default function Logon(){
                         value={password}
                         onChange={e=> setPassword(e.target.value)}
                     />
-                    <text>{message}</text>
+                    <span>{message}</span>
                     <button className="button" type="submit">Entrar</button>
                     <Link className="back-link" to="/register">
                         <FiLogIn size={16} color="#E02041"></FiLogIn>

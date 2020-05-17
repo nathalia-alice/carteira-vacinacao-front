@@ -49,9 +49,27 @@ module.exports = {
     },
 
     async getUsuariosComVacinas(request, response){
-        const usuariosComVacinas = await connection('usuarios').select('*');
+        const userId = request.userId;
+        const type = request.type;
+
+        var usuariosComVacinas;
+
+        if(type === "cidadao"){ 
+            usuariosComVacinas = await connection('usuarios').where({
+                id: userId
+            })
+        }else{
+            usuariosComVacinas = await connection('usuarios').select('*');
+        }
        
         return response.json(usuariosComVacinas);
        
+    },
+
+    async delete(request, response){
+        const { id } = request.params;
+
+        await connection('usuarios').where('id', id).delete();
+        return response.status(200).send({ message: "Deletado com sucesso!" });
     }
 }
