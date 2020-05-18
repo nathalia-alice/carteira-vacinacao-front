@@ -55,9 +55,7 @@ module.exports = {
         var usuariosComVacinas;
 
         if(type === "cidadao"){ 
-            usuariosComVacinas = await connection('usuarios').where({
-                id: userId
-            })
+            usuariosComVacinas = await connection('usuarios').where('id', userId);
         }else{
             usuariosComVacinas = await connection('usuarios').select('*');
         }

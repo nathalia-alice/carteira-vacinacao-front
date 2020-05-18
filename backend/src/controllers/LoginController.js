@@ -1,10 +1,9 @@
 const connection = require('../database/connection');
 const crypto = require('crypto');
-var jwt = require('jsonwebtoken');
 
 module.exports = {
 
-    async login(request, response){
+    async login(request, response, jwt){
         const formatedPassword = crypto.createHash('md5').update(request.body.password).digest("hex");
         
         const userIdentified = await connection('usuarios').where({

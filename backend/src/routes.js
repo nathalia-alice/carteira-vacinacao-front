@@ -5,6 +5,7 @@ const VacinasController = require('./controllers/VacinasController')
 const UsuariosController = require("./controllers/UsuariosController")
 const VacinasPorUsuarioController = require("./controllers/VacinasPorUsuarioController")
 const LoginController = require("./controllers/LoginController")
+const ProfileController = require("./controllers/ProfileController")
 
 const routes = express.Router();
 var jwt = require('jsonwebtoken');
@@ -18,6 +19,8 @@ routes.post('/vacinas', celebrate({
 }), VacinasController.create);
 
 routes.get('/vacinas', VacinasController.index);
+
+routes.get('/profile', verifyJWT, ProfileController.index);
 
 routes.post('/usuarios', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -57,7 +60,7 @@ routes.post('/vacinasxusuario', celebrate({
 
 routes.get('/vacinasxusuario', verifyJWT, VacinasPorUsuarioController.index);
 
-routes.post('/login', (req, res) => LoginController.login(req, res));
+routes.post('/login', (req, res) => LoginController.login(req, res, jwt));
 
 function verifyJWT(req, res, next){
   var token = req.headers['x-access-token'];

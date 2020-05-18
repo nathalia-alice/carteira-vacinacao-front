@@ -8,10 +8,38 @@ import logoImg from  '../../assets/saúde.png';
 
 export default function Profile(){
     const [users, setUsers] = useState([]);
+    const [profile, setProfile] = useState([]);
     const history = useHistory();
     const token = localStorage.getItem('token');
    
     useEffect(()=>{
+        getVacinasPorUsuario();
+        getProfile();
+    })
+
+    function handleLogout(){
+        localStorage.removeItem('token');
+        history.push('/')
+    }
+
+    function getProfile(){
+        if(profile.length === 0){
+            api.get('profile', {
+                headers: { 
+                    'x-access-token': token
+                }  
+            })
+            .then(response => {
+                setProfile(response.data);
+            })
+            .catch(error => {
+                console.error(error.response.data.message);
+                handleLogout();
+            })
+        }
+    }
+
+    function getVacinasPorUsuario(){
         if(users.length === 0){
             api.get('vacinasxusuario', {
                 headers: { 
@@ -26,12 +54,8 @@ export default function Profile(){
                 handleLogout();
             })
         }
-    })
-
-    function handleLogout(){
-        localStorage.removeItem('token');
-        history.push('/')
     }
+
     
     return (
         <div className="profile-container">
@@ -46,21 +70,22 @@ export default function Profile(){
                     <FiPower size={18} color="#E02041"></FiPower>
                 </button>
             </header>
-           <h1>Vacinas cadastradas</h1>
-           <ul>
-               {users.map((user) => (
-               <li key={user.id}>
+            <span>Bem vindo(a), {profile.name}</span>
+            <h1>Vacinas cadastradas</h1>
+            <ul>
+                {users.map((user) => (
+                <li key={user.id}>
                     <strong>NOME DO CIDADÃO:</strong>
-                   <p>{user.name}</p>
-                   <strong>NOME DA VACINA:</strong>
-                   <p>{user.name_vacina}</p>
-                   <strong>DESCRIÇÃO DA VACINA:</strong>
-                   <p>{user.description}</p>
-                   <strong>DATA DA VACINA:</strong>
-                   <p>{user.date}</p>
-               </li>
-               ))}
-           </ul>
+                    <p>{user.name}</p>
+                    <strong>NOME DA VACINA:</strong>
+                    <p>{user.name_vacina}</p>
+                    <strong>DESCRIÇÃO DA VACINA:</strong>
+                    <p>{user.description}</p>
+                    <strong>DATA DA VACINA:</strong>
+                    <p>{user.date}</p>
+                </li>
+                ))}
+            </ul>
         </div>
     );
 }
