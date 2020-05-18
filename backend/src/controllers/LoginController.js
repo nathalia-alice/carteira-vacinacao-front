@@ -21,9 +21,9 @@ module.exports = {
                 expiresIn: 900
             });
 
-            response.status(200).send({ auth: true, message: "Login realizado com sucesso!", token: token });
+            response.status(200).send({ auth: true, message: "Login realizado com sucesso.", token: token });
         }else{
-            response.status(400).send({ auth: false, message: "Login inválido!" });
+            response.status(400).send({ auth: false, message: "Login inválido." });
         }
     }
 }

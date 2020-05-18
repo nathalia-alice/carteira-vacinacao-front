@@ -21,6 +21,10 @@ export default function Profile(){
             .then(response => {
                 setUsers(response.data);
             })
+            .catch(error => {
+                console.error(error.response.data.message);
+                handleLogout();
+            })
         }
     })
 
