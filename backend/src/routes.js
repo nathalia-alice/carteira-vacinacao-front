@@ -1,15 +1,13 @@
 const express = require('express');
 const {celebrate, Segments, Joi} = require('celebrate');
-
-const VacinasController = require('./controllers/VacinasController')
-const UsuariosController = require("./controllers/UsuariosController")
-const VacinasPorUsuarioController = require("./controllers/VacinasPorUsuarioController")
-const LoginController = require("./controllers/LoginController")
-const ProfileController = require("./controllers/ProfileController")
-
 const routes = express.Router();
-var jwt = require('jsonwebtoken');
-
+const VacinasController = require('./controllers/VacinasController')
+const UsuariosController = require('./controllers/UsuariosController')
+const VacinasPorUsuarioController = require('./controllers/VacinasPorUsuarioController')
+const LoginController = require('./controllers/LoginController')
+const ProfileController = require('./controllers/ProfileController')
+const verifyJWT = require('./middlewares/verifyJWT');
+const jwt = require('jsonwebtoken');
 
 routes.post('/vacinas', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -20,7 +18,7 @@ routes.post('/vacinas', celebrate({
 
 routes.get('/vacinas', VacinasController.index);
 
-routes.get('/profile', verifyJWT, ProfileController.index);
+routes.get('/profile', verifyJWT.index, ProfileController.index);
 
 routes.post('/usuarios', celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -42,7 +40,7 @@ routes.post('/usuarios', celebrate({
     })
 }), UsuariosController.create);
 
-routes.get('/usuarios', verifyJWT, UsuariosController.getUsuariosComVacinas);
+routes.get('/usuarios', verifyJWT.index, UsuariosController.getUsuariosComVacinas);
 
 routes.delete('/usuarios/:id', celebrate({
     [Segments.PARAMS]: Joi.object({
@@ -58,25 +56,8 @@ routes.post('/vacinasxusuario', celebrate({
     })
 }), VacinasPorUsuarioController.create);
 
-routes.get('/vacinasxusuario', verifyJWT, VacinasPorUsuarioController.index);
+routes.get('/vacinasxusuario', verifyJWT.index, VacinasPorUsuarioController.index);
 
-routes.post('/login', (req, res) => LoginController.login(req, res, jwt));
-
-function verifyJWT(req, res, next){
-  var token = req.headers['x-access-token'];
-
-  if (!token) return res.status(401).send({ auth: false, message: 'Nenhum token fornecido.' });
-  
-  jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
-    if (err) return res.status(500).send({ auth: false, message: 'Falha ao autenticar o token.' });
-    
-    // se tudo estiver ok, salva no request para uso posterior
-    req.userId = decoded.id;
-    req.email = decoded.email;
-    req.type = decoded.type;
-
-    next();
-  });
-}
+routes.post('/login', (req, res) => LoginController.login(req, res));
 
 module.exports = routes;
