@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 import NewVaccine from './pages/NewVaccine';
 
 export default function Routes(){
@@ -13,6 +14,7 @@ export default function Routes(){
                 <Route path="/" exact component={Login}></Route>
                 <Route path="/register" component={Register}></Route>
                 <Route path="/home" component={Home}></Route>
+                <Route path="/profile" component={Profile}></Route>
                 <Route path="/vaccinesxuser/new" component={NewVaccine}></Route>
             </Switch>
         </BrowserRouter>

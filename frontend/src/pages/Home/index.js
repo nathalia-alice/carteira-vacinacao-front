@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower } from 'react-icons/fi';
-
 import api from '../../services/api';
 import './styles.css'
 import logoImg from  '../../assets/saúde.png';
@@ -74,7 +73,8 @@ export default function Home(){
                 <a className="logo" href="/">
                     <img src={logoImg} alt="Carteira de Vacinação Online"></img>
                 </a>
-                <Link className="button" to="/my-profile/new">Meu perfil</Link>
+                
+                <Link className="button" to="/profile">Meu perfil</Link>
                 { button }
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={18} color="#E02041"></FiPower>
