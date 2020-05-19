@@ -9,7 +9,7 @@ import './styles.css'
 import logoImg from  '../../assets/saúde.png';
 import loginMedico from  '../../assets/login-medico.png';
 
-export default function Logon(){
+export default function Login(){
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -25,7 +25,7 @@ export default function Logon(){
         .then(response => {
             localStorage.setItem('token', response.data.token);
             
-            history.push('/profile');
+            history.push('/home');
         })
         .catch(error => {
            setMessage(error.response.data.message);

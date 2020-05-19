@@ -6,12 +6,14 @@ import api from '../../services/api';
 import './styles.css'
 import logoImg from  '../../assets/saúde.png';
 
-export default function Profile(){
+export default function Home(){
     const [users, setUsers] = useState([]);
     const [profile, setProfile] = useState([]);
     const history = useHistory();
     const token = localStorage.getItem('token');
    
+    let button;
+
     useEffect(()=>{
         getVacinasPorUsuario();
         getProfile();
@@ -56,6 +58,15 @@ export default function Profile(){
         }
     }
 
+    switch(profile.type) {
+        case 'posto-saude':
+            button =  <Link className="button" to="/vaccinesxuser/new">Cadastrar nova vacina</Link>;
+            break;
+        case 'administrador':
+            button =  <Link className="button" to="/vaccines/new">Cadastrar nova vacina</Link>;
+            break;
+    }
+
     
     return (
         <div className="profile-container">
@@ -63,9 +74,8 @@ export default function Profile(){
                 <a className="logo" href="/">
                     <img src={logoImg} alt="Carteira de Vacinação Online"></img>
                 </a>
-                <Link className="button" to="/vacinasxusuario/new">
-                   Cadastrar nova vacina
-                </Link>
+                <Link className="button" to="/my-profile/new">Meu perfil</Link>
+                { button }
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={18} color="#E02041"></FiPower>
                 </button>

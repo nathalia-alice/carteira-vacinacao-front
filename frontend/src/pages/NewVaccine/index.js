@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import { GiLoveInjection } from "react-icons/gi";
 
 import './styles.css'
 
-export default function NewVacina(){
+export default function NewVaccine(){
     const [id_vacina, setVacina] = useState('');
     const [id_usuario, setUsuario] = useState('');
     const date = new Date();
     
     const history = useHistory();
     
-    async function handleNewVacina(event){
+    async function handleNewVaccine(event){
         event.preventDefault();
 
         const data = {
@@ -24,7 +25,7 @@ export default function NewVacina(){
         try{
             await api.post('vacinasxusuario', data);
 
-            history.push('/profile');
+            history.push('/home');
         }catch(err){
              console.error("Erro:", err);
         }
@@ -34,14 +35,14 @@ export default function NewVacina(){
         <div className="new-incident-container">
         <div className="content">
              <section>
-                 <h1>Cadastrar nova vacina</h1>
+                 <h1><GiLoveInjection size={35} color="#e02041"></GiLoveInjection>Cadastrar nova vacina</h1>
                  <p>Descreva a vacina detalhadamente.</p>
-                 <Link className="back-link" to="/profile">
+                 <Link className="back-link" to="/home">
                      <FiArrowLeft size={16} color="#E02041"></FiArrowLeft>
                      Voltar para home
                  </Link>
              </section>
-             <form onSubmit={handleNewVacina}>
+             <form onSubmit={handleNewVaccine}>
                  <input 
                     placeholder="Digite o CPF do cidadão"
                     value={id_usuario}
