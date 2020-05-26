@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
@@ -10,6 +10,12 @@ export default function NewVaccine(){
     const [name_vacina, setNameVaccine] = useState('');
     const [description, setDescription] = useState('');
     const history = useHistory();
+    const token = localStorage.getItem('token');
+
+    function handleLogout(){
+        localStorage.removeItem('token');
+        history.push('/')
+    }
 
     async function handleNewVaccine(event){
         event.preventDefault();
@@ -20,11 +26,14 @@ export default function NewVaccine(){
         };
      
         try{
-            await api.post('vacinas', data);
+            await api.post('vacinas', data, {
+                 headers: {'x-access-token': token }
+            });
 
-            history.push('/home');
+            history.push('/listvaccine');
         }catch(err){
              console.error("Erro:", err);
+             handleLogout();
         }
     }
 

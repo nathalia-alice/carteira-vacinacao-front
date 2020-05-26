@@ -40,11 +40,13 @@ export default function Login(){
                 <form onSubmit={handleLogin}>
                     <h1>Faça seu login</h1>
                     <input 
+                        type="email"
                         placeholder="Usuário"
                         value={user}
                         onChange={e=> setUser(e.target.value)}
                     />
                      <input 
+                        type="password"
                         placeholder="Senha"
                         value={password}
                         onChange={e=> setPassword(e.target.value)}

@@ -1,0 +1,96 @@
+.list-vaccine{
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+.list-vaccine header{
+    display: flex;
+    align-items: center;
+}
+
+.list-vaccine header span{
+    font-size: 20px;
+    margin-left: 24px;
+}
+
+.list-vaccine header img{
+  height: 64px;
+}
+
+.list-vaccine header a{
+  width: 260px;
+  margin-left: auto;
+  margin-top: 0;
+  margin-right: 20px;
+}
+.list-vaccine header button{
+    height: 60px;
+    width: 60px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: #fff;
+    margin-left: 16px;
+    transition: border-color 0.2s;
+}
+.list-vaccine ul li .edit{
+    bottom: 0;
+    top: 70px !important;
+    background-color: #fff;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border: 0;
+    height: 20px;
+}
+.list-vaccine header button:hover{
+    border-color: #999;
+}
+.list-vaccine h1{
+    margin-top: 50px;
+    margin-bottom: 24px;
+}
+.list-vaccine ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    list-style: none;
+}
+.list-vaccine ul li{
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+.list-vaccine ul li button {
+    background-color: #fff;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border: 0;
+    height: 20px;
+}   
+.list-vaccine ul li button:hover{
+   opacity: 0.8;
+}
+.list-vaccine ul li strong{
+    display: block;
+    margin-bottom: 16px;
+    color: #41414d;
+}
+
+.list-vaccine ul li p + strong {
+    margin-top: 32px;
+}
+
+.list-vaccine ul li p{
+    color: #737380
+}
+.list-vaccine .logo{
+    width: 50%;
+}
+@media (max-width: 1050px) {
+    .list-vaccine ul{
+        grid-template-columns: 1fr 1fr;
+    }
+}

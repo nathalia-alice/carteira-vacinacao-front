@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NewVaccine from './pages/NewVaccine';
 import CreateVaccine from './pages/CreateVaccine';
+import ListVaccine from './pages/ListVaccine';
 
 export default function Routes(){
     return(
@@ -18,6 +19,7 @@ export default function Routes(){
                 <Route path="/profile" component={Profile}></Route>
                 <Route path="/vaccinesxuser/new" component={NewVaccine}></Route>
                 <Route path="/vaccines/new" component={CreateVaccine}></Route>
+                <Route path="/listvaccine" component={ListVaccine}></Route>
             </Switch>
         </BrowserRouter>
     )

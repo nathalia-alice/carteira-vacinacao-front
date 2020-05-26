@@ -11,9 +11,6 @@ export default function Home(){
     const history = useHistory();
     const token = localStorage.getItem('token');
    
-    let button;
-    let listVaccine;
-
     useEffect(()=>{
         getVacinasPorUsuario();
         getProfile();
@@ -58,15 +55,7 @@ export default function Home(){
         }
     }
 
-    switch(profile.type) {
-        case 'posto-saude':
-            button =  <Link className="button" to="/vaccinesxuser/new">Cadastrar nova vacina</Link>;
-            break;
-        case 'administrador':
-            button =  <Link className="button" to="/vaccines/new">Cadastrar nova vacina</Link>;
-            listVaccine = <Link className="button" to="/listvaccine">Visualizar vacinas</Link>;
-            break;
-    }
+
 
     
     return (
@@ -76,9 +65,7 @@ export default function Home(){
                     <img src={logoImg} alt="Carteira de Vacinação Online"></img>
                 </a>
                 
-                <Link className="button" to="/profile">Meu perfil</Link>
-                { button }
-                { listVaccine }
+                <Link className="button" to="/home">Meu perfil</Link>
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={18} color="#E02041"></FiPower>
                 </button>
