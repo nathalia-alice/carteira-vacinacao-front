@@ -48,11 +48,18 @@ routes.delete('/usuarios/:id', celebrate({
     })
 }), UsuariosController.delete);
 
+
 routes.delete('/vacinas/:id', celebrate({
     [Segments.PARAMS]: Joi.object({
         id: Joi.string().required()
     })
 }), verifyJWT.index, VacinasController.delete);
+
+routes.put('/vacinas/:id', celebrate({
+    [Segments.PARAMS]: Joi.object({
+        id: Joi.string().required()
+    })
+}), verifyJWT.index, VacinasController.put);
 
 routes.post('/vacinasxusuario', celebrate({
     [Segments.BODY]: Joi.object().keys({
