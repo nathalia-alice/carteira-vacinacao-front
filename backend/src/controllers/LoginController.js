@@ -7,9 +7,9 @@ module.exports = {
     async login(request, response){
         const formatedPassword = crypto.createHash('md5').update(request.body.password).digest("hex");
         
-        const userIdentified = await connection('usuarios').where({
+        const userIdentified = await connection('users').where({
             email: request.body.user,
-            senha: formatedPassword
+            password: formatedPassword
         }).first('id', 'email', 'type');
     
         if(userIdentified){

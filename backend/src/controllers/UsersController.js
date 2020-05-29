@@ -3,17 +3,17 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response) {
-        const usuarios = await connection('usuarios').select('*');
+        const users = await connection('users').select('*');
 
-        return response.json(usuarios);
+        return response.json(users);
     },
 
     async create(request, response) {
-        const { name, doc, cep, rua, bairro, cidade, estado, numero, complemento, nascimento, telefone, type, email, senhaNormalize } = request.body;
+        const { name, doc, cep, street, neighborhood, city, state, number, complement, birth, telephone, type, email, passwordNormalize } = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
-        const senha = crypto.createHash('md5').update(senhaNormalize).digest("hex");
+        const password = crypto.createHash('md5').update(passwordNormalize).digest("hex");
        
-        var ativo= false;
+        var active= false;
         var cpf = false;
         var cnpj = false;
        
@@ -21,28 +21,28 @@ module.exports = {
             cnpj = true;
         }else{
             cpf = true;
-            ativo = true;
+            active = true;
         }
 
-        await connection('usuarios').insert({
+        await connection('users').insert({
             id,
             name,
             doc,
             cpf,
             cnpj,
             cep,
-            rua,
-            bairro,
-            cidade,
-            estado,
-            numero,
-            complemento,
-            nascimento,
-            telefone,
-            ativo,
+            street,
+            neighborhood,
+            city,
+            state,
+            number,
+            complement,
+            birth,
+            telephone,
+            active,
             type,
             email,
-            senha
+            password
         });
 
         return response.json({ id, name });
@@ -52,22 +52,22 @@ module.exports = {
         const userId = request.userId;
         const type = request.type;
 
-        var usuariosComVacinas;
+        var usersWithVaccines;
 
         if(type === "cidadao"){ 
-            usuariosComVacinas = await connection('usuarios').where('id', userId);
+            usersWithVaccines = await connection('users').where('id', userId);
         }else{
-            usuariosComVacinas = await connection('usuarios').select('*');
+            usersWithVaccines = await connection('users').select('*');
         }
        
-        return response.json(usuariosComVacinas);
+        return response.json(usersWithVaccines);
        
     },
 
     async delete(request, response){
         const { id } = request.params;
 
-        await connection('usuarios').where('id', id).delete();
+        await connection('users').where('id', id).delete();
         return response.status(200).send({ message: "Deletado com sucesso!" });
     }
 }

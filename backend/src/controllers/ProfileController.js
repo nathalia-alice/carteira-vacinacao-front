@@ -4,8 +4,8 @@ module.exports = {
     async index(request, response) {
         const userId = request.userId;
 
-        const usuarios = await connection('usuarios').where('id', userId).first();
+        const users = await connection('users').where('id', userId).first();
 
-        return response.json(usuarios);
+        return response.json(users);
     }
 }

@@ -78,7 +78,7 @@ export default function Home(){
                     <strong>NOME DO CIDADÃO:</strong>
                     <p>{user.name}</p>
                     <strong>NOME DA VACINA:</strong>
-                    <p>{user.name_vacina}</p>
+                    <p>{user.name_vaccine}</p>
                     <strong>DESCRIÇÃO DA VACINA:</strong>
                     <p>{user.description}</p>
                     <strong>DATA DA VACINA:</strong>

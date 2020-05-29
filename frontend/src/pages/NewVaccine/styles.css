@@ -46,3 +46,12 @@
     margin-top: 8px;
 }
 
+.input-personalized{
+    background-color: #fff;
+    padding: 10px 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.new-incident-container .content form input{
+    margin-bottom: 0px;
+}

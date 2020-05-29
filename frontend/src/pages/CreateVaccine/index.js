@@ -7,7 +7,7 @@ import { GiLoveInjection } from "react-icons/gi";
 import './styles.css'
 
 export default function NewVaccine(){
-    const [name_vacina, setNameVaccine] = useState('');
+    const [name_vaccine, setNameVaccine] = useState('');
     const [description, setDescription] = useState('');
     const history = useHistory();
     const token = localStorage.getItem('token');
@@ -21,12 +21,12 @@ export default function NewVaccine(){
         event.preventDefault();
 
         const data = {
-            name_vacina,
+            name_vaccine,
             description,
         };
      
         try{
-            await api.post('vacinas', data, {
+            await api.post('vaccines', data, {
                  headers: {'x-access-token': token }
             });
 
@@ -52,7 +52,7 @@ export default function NewVaccine(){
              <form onSubmit={handleNewVaccine}>
                  <input 
                     placeholder="Digite o Nome da Vacina"
-                    value={name_vacina}
+                    value={name_vaccine}
                     onChange={e=> setNameVaccine(e.target.value)} 
                 />
                <textarea 

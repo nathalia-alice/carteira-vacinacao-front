@@ -43,7 +43,7 @@ export default function Home(){
 
     function getVacinasPorUsuario(){
         if(users.length === 0){
-            api.get('vacinasxusuario', {
+            api.get('vaccinesxuser', {
                 headers: { 
                     'x-access-token': token
                 }  
@@ -58,16 +58,12 @@ export default function Home(){
         }
     }
 
-    switch(profile.type) {
-        case 'posto-saude':
-            button =  <Link className="button" to="/vaccinesxuser/new">Cadastrar nova vacina</Link>;
-            break;
-        case 'administrador':
-            button =  <Link className="button" to="/vaccines/new">Cadastrar nova vacina</Link>;
-            listVaccine = <Link className="button" to="/listvaccine">Visualizar vacinas</Link>;
-            break;
+    if(profile.type === "posto-saude") {
+        button =  <Link className="button" to="/vaccinesxuser/new">Cadastrar nova vacina</Link>;
+    }else if(profile.type === 'administrador'){
+        button =  <Link className="button" to="/vaccines/new">Cadastrar nova vacina</Link>;
+        listVaccine = <Link className="button" to="/listvaccine">Visualizar vacinas</Link>;
     }
-
     
     return (
         <div className="profile-container">
@@ -91,7 +87,7 @@ export default function Home(){
                     <strong>NOME DO CIDADÃO:</strong>
                     <p>{user.name}</p>
                     <strong>NOME DA VACINA:</strong>
-                    <p>{user.name_vacina}</p>
+                    <p>{user.name_vaccine}</p>
                     <strong>DESCRIÇÃO DA VACINA:</strong>
                     <p>{user.description}</p>
                     <strong>DATA DA VACINA:</strong>

@@ -3,20 +3,20 @@ const connection = require('../database/connection');
 
 module.exports = {
     async index(request, response){
-        const vacinas = await connection('vacinas').select('*');
+        const vacinas = await connection('vaccines').select('*');
     
         return response.json(vacinas);
     },
 
     async create(request, response){
-        const { name_vacina, description } = request.body;
+        const { name_vaccine, description } = request.body;
         const id = crypto.randomBytes(4).toString('HEX');
         const type = request.type;
 
         if(type === "administrador"){
-            await connection('vacinas').insert({
+            await connection('vaccines').insert({
                 id,
-                name_vacina,
+                name_vaccine,
                 description
             });
             
@@ -32,7 +32,7 @@ module.exports = {
         const type = request.type;
 
         if(type === "administrador"){ 
-            await connection('vacinas').where('id', id).delete();
+            await connection('vaccines').where('id', id).delete();
             return response.status(200).send({ message: "Deletado com sucesso!" });
         }else{
             return response.status(401).send({ message: "Usuário não autorizado." });
@@ -42,15 +42,15 @@ module.exports = {
     async put(request, response){
        
         const id = request.params.id;
-        const name_vacina = request.body.name_vacina;
+        const name_vaccine = request.body.name_vaccine;
         const description = request.body.description;
         const type = request.type;
 
         if(type === "administrador"){ 
-            await connection('vacinas')
+            await connection('vaccines')
                 .where({id: id})
                 .update({
-                    name_vacina: name_vacina,
+                    name_vaccine: name_vaccine,
                     description: description  
                 });
 

@@ -21,7 +21,7 @@ export default function Home(){
 
     function getVacinas(){
         if(vaccines.length === 0){
-            api.get('vacinas')
+            api.get('vaccines')
             .then(response => {
                 setVaccines(response.data);
             })
@@ -35,7 +35,7 @@ export default function Home(){
     
     async function handleDeleteVaccine(id){
         try{
-            await api.delete(`vacinas/${id}`, {
+            await api.delete(`vaccines/${id}`, {
                 headers: { 
                     'x-access-token': token
                 }  
@@ -62,7 +62,7 @@ export default function Home(){
                 <li key={user.id}>
                 
                     <strong>NOME DA VACINA:</strong>
-                    <p>{user.name_vacina}</p>
+                    <p>{user.name_vaccine}</p>
                     <strong>DESCRIÇÃO DA VACINA:</strong>
                     <p>{user.description}</p>
                     <button onClick={() => handleDeleteVaccine(user.id)} type="button">

@@ -5,14 +5,12 @@ module.exports = {
   development: {
     client: process.env.KNEX_CLIENT,
     connection: {
-      filename: process.env.KNEX_FILENAME
-    },
-    migrations:{
-      directory: process.env.KNEX_DIRECTORY
-    },
-    useNullAsDefault: true,
+      host : 'localhost',
+      user : 'root',
+      password : '',
+      database : 'carteira-vacinacao-online'
+    }
   },
-
   staging: {
     client: 'postgresql',
     connection: {

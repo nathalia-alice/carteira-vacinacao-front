@@ -1,76 +1,75 @@
 const express = require('express');
 const {celebrate, Segments, Joi} = require('celebrate');
 const routes = express.Router();
-const VacinasController = require('./controllers/VacinasController')
-const UsuariosController = require('./controllers/UsuariosController')
-const VacinasPorUsuarioController = require('./controllers/VacinasPorUsuarioController')
+const VaccinesController = require('./controllers/VaccinesController')
+const UsersController = require('./controllers/UsersController')
+const VaccinesUserController = require('./controllers/VaccinesUserController')
 const LoginController = require('./controllers/LoginController')
 const ProfileController = require('./controllers/ProfileController')
 const verifyJWT = require('./middlewares/verifyJWT');
-const jwt = require('jsonwebtoken');
 
-routes.post('/vacinas', celebrate({
+routes.post('/vaccines', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        name_vacina: Joi.string().required(),
+        name_vaccine: Joi.string().required(),
         description: Joi.string().required()
     })
-}), verifyJWT.index, VacinasController.create);
+}), verifyJWT.index, VaccinesController.create);
 
-routes.get('/vacinas', VacinasController.index);
+routes.get('/vaccines', VaccinesController.index);
+
+routes.delete('/vaccines/:id', celebrate({
+    [Segments.PARAMS]: Joi.object({
+        id: Joi.string().required()
+    })
+}), verifyJWT.index, VaccinesController.delete);
+
+routes.put('/vaccines/:id', celebrate({
+    [Segments.PARAMS]: Joi.object({
+        id: Joi.string().required()
+    })
+}), verifyJWT.index, VaccinesController.put);
 
 routes.get('/profile', verifyJWT.index, ProfileController.index);
 
-routes.post('/usuarios', celebrate({
+routes.post('/users', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
         doc: Joi.string(),
         cep: Joi.string().required(),
-        rua: Joi.string().required(),
-        bairro: Joi.string().required(),
-        cidade: Joi.string().required(),
-        estado: Joi.string().required(),
-        numero: Joi.string().required(),
-        complemento: Joi.string(),
-        nascimento: Joi.string().required(),
-        telefone: Joi.string().required(),
-        ativo: Joi.boolean(),
+        street: Joi.string().required(),
+        neighborhood: Joi.string().required(),
+        city: Joi.string().required(),
+        state: Joi.string().required(),
+        number: Joi.string().required(),
+        complement: Joi.string(),
+        birth: Joi.string().required(),
+        telephone: Joi.string().required(),
+        active: Joi.boolean(),
         type: Joi.string().required(),
         email: Joi.string().required(),
-        senhaNormalize: Joi.string().required()
+        passwordNormalize: Joi.string().required()
     })
-}), UsuariosController.create);
+}), UsersController.create);
 
-routes.get('/usuarios', verifyJWT.index, UsuariosController.getUsuariosComVacinas);
+routes.get('/users', verifyJWT.index, UsersController.getUsuariosComVacinas);
 
-routes.delete('/usuarios/:id', celebrate({
+routes.delete('/users/:id', celebrate({
     [Segments.PARAMS]: Joi.object({
         id: Joi.string().required()
     })
-}), UsuariosController.delete);
+}), UsersController.delete);
 
-
-routes.delete('/vacinas/:id', celebrate({
-    [Segments.PARAMS]: Joi.object({
-        id: Joi.string().required()
-    })
-}), verifyJWT.index, VacinasController.delete);
-
-routes.put('/vacinas/:id', celebrate({
-    [Segments.PARAMS]: Joi.object({
-        id: Joi.string().required()
-    })
-}), verifyJWT.index, VacinasController.put);
-
-routes.post('/vacinasxusuario', celebrate({
+routes.post('/vaccinesxuser', celebrate({
     [Segments.BODY]: Joi.object().keys({
-        id_vacina: Joi.string().required(),
-        id_usuario: Joi.string(),
+        id_vaccine: Joi.string().required(),
+        id_user: Joi.string(),
         date: Joi.string()
     })
-}), VacinasPorUsuarioController.create);
+}), VaccinesUserController.create);
 
-routes.get('/vacinasxusuario', verifyJWT.index, VacinasPorUsuarioController.index);
+routes.get('/vaccinesxuser', verifyJWT.index, VaccinesUserController.index);
 
+/*login*/
 routes.post('/login', (req, res) => LoginController.login(req, res));
 
 module.exports = routes;

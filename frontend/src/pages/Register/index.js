@@ -11,17 +11,17 @@ export default function Register(){
     const [name, setName]  = useState('');
     const [doc, setDoc] = useState('');
     const [cep, setCep] = useState('');
-    const [rua, setRua] = useState('');
-    const [bairro, setBairro] = useState('');
-    const [cidade, setCidade] = useState('');
-    const [estado, setEstado] = useState('');
-    const [numero, setNumero] = useState('');
-    const [complemento, setComplemento] = useState('');
-    const [nascimento, setNascimento] = useState('');
-    const [telefone, setTelefone] = useState('');
+    const [street, setStreet] = useState('');
+    const [neighborhood, setNeighborhood] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [number, setNumber] = useState('');
+    const [complement, setComplement] = useState('');
+    const [birth, setBirth] = useState('');
+    const [telephone, setTelephone] = useState('');
     const [type, setType] = useState('');
     const [email, setEmail] = useState('');
-    const [senhaNormalize, setSenha] = useState('');
+    const [passwordNormalize, setSenha] = useState('');
 
     const history = useHistory();
     async function handleRegister(event){
@@ -31,21 +31,21 @@ export default function Register(){
             name,
             doc, 
             cep,
-            rua,
-            bairro,
-            cidade,
-            estado,
-            numero,
-            complemento,
-            nascimento,
-            telefone,
+            street,
+            neighborhood,
+            city,
+            state,
+            number,
+            complement,
+            birth,
+            telephone,
             type,
             email,
-            senhaNormalize,
+            passwordNormalize,
         };
 
         try{
-            await api.post('usuarios', data);
+            await api.post('users', data);
 
             history.push('/');
 
@@ -73,9 +73,9 @@ export default function Register(){
                         onChange={e=> setName(e.target.value)}
                     />
                      <input 
-                        placeholder="Data de nascimento"
-                        value={nascimento}
-                        onChange={e=> setNascimento(e.target.value)}
+                        placeholder="Data de Nascimento"
+                        value={birth}
+                        onChange={e=> setBirth(e.target.value)}
                     />
                      <input 
                         placeholder="CPF/CNPJ"
@@ -91,13 +91,13 @@ export default function Register(){
                     <input 
                         type="password" 
                         placeholder="Senha"
-                        value={senhaNormalize}
+                        value={passwordNormalize}
                         onChange={e=> setSenha(e.target.value)} 
                     />
                     <input 
                         placeholder="Telefone"
-                        value={telefone}
-                        onChange={e=> setTelefone(e.target.value)} 
+                        value={telephone}
+                        onChange={e=> setTelephone(e.target.value)} 
                     />
                     <Link className="back-link" to="/">
                         <FiArrowLeft size={16} color="#E02041"></FiArrowLeft>
@@ -110,14 +110,14 @@ export default function Register(){
                     <div className="input-group">
                         <input 
                             placeholder="Cidade"
-                            value={cidade}
-                            onChange={e=> setCidade(e.target.value)} 
+                            value={city}
+                            onChange={e=> setCity(e.target.value)} 
                         />
                         <input 
                             placeholder="UF" 
                             style={{width: 80}}
-                            value={estado}
-                            onChange={e=> setEstado(e.target.value)} 
+                            value={state}
+                            onChange={e=> setState(e.target.value)} 
                         />
                     </div>
                     <input 
@@ -127,26 +127,26 @@ export default function Register(){
                     />
                     <input 
                         placeholder="Bairro"
-                        value={bairro}
-                        onChange={e=> setBairro(e.target.value)} 
+                        value={neighborhood}
+                        onChange={e=> setNeighborhood(e.target.value)} 
                     />
                      <div className="input-group">
                         <input 
                             placeholder="Rua"
-                            value={rua}
-                            onChange={e=> setRua(e.target.value)} 
+                            value={street}
+                            onChange={e=> setStreet(e.target.value)} 
                         />
                         <input 
                             placeholder="Nº" 
                             style={{width: 100}}
-                            value={numero}
-                            onChange={e=> setNumero(e.target.value)} 
+                            value={number}
+                            onChange={e=> setNumber(e.target.value)} 
                         />
                     </div>
                     <input 
                         placeholder="Complemento"
-                        value={complemento}
-                        onChange={e=> setComplemento(e.target.value)} 
+                        value={complement}
+                        onChange={e=> setComplement(e.target.value)} 
                     />
                     <button className="button" type="submit">Cadastrar</button>
                 </section>
