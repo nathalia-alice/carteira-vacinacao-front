@@ -10,6 +10,7 @@ import CreateVaccine from './pages/CreateVaccine';
 import ListVaccine from './pages/ListVaccine';
 import EditVaccine from './pages/EditVaccine';
 import EditProfile from './pages/EditProfile';
+import ApproveUsers from './pages/ApproveUsers';
 
 export default function Routes(){
     return(
@@ -24,6 +25,7 @@ export default function Routes(){
                 <Route path="/listvaccine" component={ListVaccine}></Route>
                 <Route path="/vaccines/edit" component={EditVaccine}></Route>
                 <Route path="/edit" component={EditProfile}></Route>
+                <Route path="/approveusers" component={ApproveUsers}></Route>
             </Switch>
         </BrowserRouter>
     )
