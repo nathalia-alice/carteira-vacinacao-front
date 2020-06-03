@@ -13,6 +13,7 @@ export default function Login(){
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [profile, setProfile] = useState('');
     const history = useHistory();
 
     async function handleLogin(event){
@@ -24,12 +25,35 @@ export default function Login(){
          })
         .then(response => {
             localStorage.setItem('token', response.data.token);
-            
-            history.push('/home');
+            getProfile(response.data.token);
         })
         .catch(error => {
            setMessage(error.response.data.message);
         })
+    }
+
+    function getProfile(token){
+        if(profile.length === 0){
+            api.get('profile', {
+                headers: { 
+                    'x-access-token': token
+                }  
+            })
+            .then(response => {
+                setProfile(response.data);
+               
+                if(response.data.type === "administrador"){
+                    history.push('/approveusers');
+                }else{
+                    history.push('/home');
+                }
+                
+            })
+            .catch(error => {
+                console.error(error.response.data.message);
+                history.push('/');
+            })
+        }
     }
 
     return (
