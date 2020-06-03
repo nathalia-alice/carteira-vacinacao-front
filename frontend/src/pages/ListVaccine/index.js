@@ -59,6 +59,7 @@ export default function Home(){
             <h1>Vacinas cadastradas</h1>
             <ul>
                 {vaccines.map((user) => (
+                   
                 <li key={user.id}>
                 
                     <strong>NOME DA VACINA:</strong>
@@ -68,9 +69,14 @@ export default function Home(){
                     <button onClick={() => handleDeleteVaccine(user.id)} type="button">
                        <FiTrash2 size={20} color="red"></FiTrash2>
                    </button>
-                   <Link className="edit" to="/vaccines/edit" type="button">
+                   <Link className="edit" type="button" to={{
+                            pathname: "/vaccines/edit",
+                            state: user
+                        }} >
                        <FiEdit2 size={20} color="blue"></FiEdit2>
                    </Link>
+
+
                 </li>
                 ))}
             </ul>

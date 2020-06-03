@@ -34,7 +34,7 @@ routes.get('/profile', verifyJWT.index, ProfileController.index);
 routes.post('/users', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
-        doc: Joi.string(),
+        doc: Joi.string().required(),
         cep: Joi.string().required(),
         street: Joi.string().required(),
         neighborhood: Joi.string().required(),
@@ -58,6 +58,13 @@ routes.delete('/users/:id', celebrate({
         id: Joi.string().required()
     })
 }), UsersController.delete);
+
+routes.put('/users/:id', celebrate({
+    [Segments.PARAMS]: Joi.object({
+        id: Joi.string().required()
+    })
+}), verifyJWT.index, ProfileController.put);
+
 
 routes.post('/vaccinesxuser', celebrate({
     [Segments.BODY]: Joi.object().keys({

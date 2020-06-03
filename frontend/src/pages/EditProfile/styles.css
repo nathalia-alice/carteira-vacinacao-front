@@ -1,0 +1,85 @@
+.edit-profile{
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+.edit-profile header{
+    display: flex;
+    align-items: center;
+}
+
+.edit-profile header span{
+    font-size: 20px;
+    margin-left: 24px;
+}
+
+.edit-profile header img{
+  height: 64px;
+}
+
+.edit-profile header a{
+  width: 260px;
+  margin-left: auto;
+  margin-top: 0;
+  margin-right: 20px;
+}
+.edit-profile header button{
+    height: 60px;
+    width: 60px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: #fff;
+    margin-left: 16px;
+    transition: border-color 0.2s;
+}
+.edit-profile header button:hover{
+    border-color: #999;
+}
+.edit-profile h1{
+    margin-top: 50px;
+    margin-bottom: 24px;
+}
+.edit-profile ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    list-style: none;
+}
+.edit-profile ul li{
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+.edit-profile ul li button {
+    background-color: #fff;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border: 0;
+}   
+.edit-profile ul li button:hover{
+   opacity: 0.8;
+}
+.edit-profile ul li strong{
+    display: block;
+    margin-bottom: 16px;
+    color: #41414d;
+}
+
+.edit-profile ul li p + strong {
+    margin-top: 32px;
+}
+
+.edit-profile ul li p{
+    color: #737380
+}
+.edit-profile .logo{
+    width: 50%;
+}
+@media (max-width: 1050px) {
+    .edit-profile ul{
+        grid-template-columns: 1fr 1fr;
+    }
+}

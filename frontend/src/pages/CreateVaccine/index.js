@@ -44,9 +44,9 @@ export default function NewVaccine(){
              <section>
                  <h1><GiLoveInjection size={35} color="#e02041"></GiLoveInjection>Cadastrar nova vacina</h1>
                  <p>Descreva a vacina detalhadamente.</p>
-                 <Link className="back-link" to="/home">
+                 <Link className="back-link" to="/listvaccine">
                      <FiArrowLeft size={16} color="#E02041"></FiArrowLeft>
-                     Voltar para home
+                     Voltar para vacinas
                  </Link>
              </section>
              <form onSubmit={handleNewVaccine}>

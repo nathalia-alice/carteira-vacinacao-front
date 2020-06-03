@@ -72,7 +72,10 @@ export default function Home(){
                     <img src={logoImg} alt="Carteira de Vacinação Online"></img>
                 </a>
                 
-                <Link className="button" to="/profile">Meu perfil</Link>
+                <Link className="button" to={{
+                    pathname: "/edit",
+                    state: profile
+                }}>Editar Perfil</Link>
                 { button }
                 { listVaccine }
                 <button type="button" onClick={handleLogout}>
@@ -83,7 +86,7 @@ export default function Home(){
             <h1>Vacinas cadastradas</h1>
             <ul>
                 {users.map((user) => (
-                <li key={user.id}>
+                <li key={user.id_user + user.id_vaccine}>
                     <strong>NOME DO CIDADÃO:</strong>
                     <p>{user.name}</p>
                     <strong>NOME DA VACINA:</strong>
