@@ -53,6 +53,8 @@ routes.post('/users', celebrate({
 
 routes.get('/users', verifyJWT.index, UsersController.getUsuariosComVacinas);
 
+routes.get('/users/disabled', verifyJWT.index, UsersController.getUsersDisabled);
+
 routes.delete('/users/:id', celebrate({
     [Segments.PARAMS]: Joi.object({
         id: Joi.string().required()

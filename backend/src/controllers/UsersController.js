@@ -21,6 +21,9 @@ module.exports = {
             cnpj = true;
         }else{
             cpf = true;
+        }
+
+        if(type !== "administrador"){
             active = true;
         }
 
@@ -69,5 +72,9 @@ module.exports = {
 
         await connection('users').where('id', id).delete();
         return response.status(200).send({ message: "Deletado com sucesso!" });
+    },
+
+    async getUsersDisabled(request, response){
+        return true;
     }
 }

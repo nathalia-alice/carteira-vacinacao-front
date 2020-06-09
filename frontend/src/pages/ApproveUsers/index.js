@@ -99,7 +99,9 @@ export default function Home(){
                        <FiUserCheck size={20} color="green"></FiUserCheck>
                    </button>
                    <div className="alert-warning">Pendente de aprovação </div>
-                   <FiAlertTriangle size={20} color="orange"></FiAlertTriangle>
+                   <span className="alert-icon">
+                        <FiAlertTriangle size={20} color="orange"></FiAlertTriangle>
+                   </span>
                 </li>
                 ))}
             </ul>

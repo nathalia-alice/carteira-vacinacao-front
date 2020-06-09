@@ -89,7 +89,7 @@
     padding-top: 20px;
     display: inline-block;
 }
-FiAlertTriangle{
+.alert-icon svg{
     margin-bottom: -5px;
     margin-left: 5px;
 }

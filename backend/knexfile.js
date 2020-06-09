@@ -11,35 +11,14 @@ module.exports = {
       database : 'carteira-vacinacao-online'
     }
   },
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
 
   production: {
-    client: 'postgresql',
+    client: process.env.KNEX_CLIENT,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
+      host : 'sql10.freemysqlhosting.net',
+      database: 'sql10346494',
+      user:     'sql10346494',
+      password: 'ncrPlMdgIW'
     }
   }
 
