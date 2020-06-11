@@ -69,7 +69,7 @@ export default function Home(){
             telephone,
             email        
         };
-        console.log("data", data)
+       
         try{
             await api.put(`users/${profile.id}`, data, {
                 headers: { 
