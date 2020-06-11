@@ -43,7 +43,7 @@ export default function Home(){
 
     function getVacinasPorUsuario(){
         if(users.length === 0){
-            api.get('vaccinesxuser', {
+            api.get('users/disabled', {
                 headers: { 
                     'x-access-token': token
                 }  
@@ -55,6 +55,20 @@ export default function Home(){
                 console.error(error.response.data.message);
                 handleLogout();
             })
+        }
+    }
+
+    function enableUsers(event){
+
+        try{
+            api.put(`usersdisabled/${profile.id}`, {
+                 headers: {'x-access-token': token }
+            });
+
+            getVacinasPorUsuario();
+        }catch(err){
+            console.error("Erro:", err);
+            handleLogout();
         }
     }
 
@@ -83,19 +97,19 @@ export default function Home(){
                 </button>
             </header>
             <span>Bem vindo(a), {profile.name}</span>
-            <h1>Aprovar usuários</h1>
+            <h1>Aprovação Posto de Saúde</h1>
             <ul>
                 {users.map((user) => (
                 <li key={user.id_user + user.id_vaccine}>
                     <strong>NOME DO CIDADÃO:</strong>
                     <p>{user.name}</p>
-                    <strong>NOME DA VACINA:</strong>
-                    <p>{user.name_vaccine}</p>
-                    <strong>DESCRIÇÃO DA VACINA:</strong>
-                    <p>{user.description}</p>
-                    <strong>DATA DA VACINA:</strong>
-                    <p>{user.date}</p>
-                    <button type="button">
+                    <strong>DOCUMENTO:</strong>
+                    <p>{user.doc}</p>
+                    <strong>E-MAIL:</strong>
+                    <p>{user.email}</p>
+                    <strong>TELEFONE:</strong>
+                    <p>{user.telephone}</p>
+                    <button type="button" onClick={enableUsers}>
                        <FiUserCheck size={20} color="green"></FiUserCheck>
                    </button>
                    <div className="alert-warning">Pendente de aprovação </div>
