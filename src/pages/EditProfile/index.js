@@ -88,7 +88,7 @@ export default function Home(){
     return (
         <div className="edit-profile">
             <header>
-                <a className="logo" href="/">
+                <a className="logo" href="/home">
                     <img src={logoImg} alt="Carteira de Vacinação Online"></img>
                 </a>
 

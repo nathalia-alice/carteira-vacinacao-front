@@ -35,7 +35,6 @@ export default function Home(){
                 setProfile(response.data);
             })
             .catch(error => {
-                console.error(error.response.data.message);
                 handleLogout();
             })
         }
@@ -52,7 +51,6 @@ export default function Home(){
                 setUsers(response.data);
             })
             .catch(error => {
-                console.error(error.response.data.message);
                 handleLogout();
             })
         }
@@ -98,6 +96,7 @@ export default function Home(){
             </header>
             <span>Bem vindo(a), {profile.name}</span>
             <h1>Aprovação Posto de Saúde</h1>
+            {users.length > 0 ?
             <ul>
                 {users.map((user) => (
                 <li key={user.id_user + user.id_vaccine}>
@@ -119,6 +118,9 @@ export default function Home(){
                 </li>
                 ))}
             </ul>
+             :
+             <div>Não possui usuários para aprovar.</div>
+            }
         </div>
     );
 }
