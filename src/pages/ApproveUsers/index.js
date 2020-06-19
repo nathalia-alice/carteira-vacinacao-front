@@ -57,10 +57,11 @@ export default function Home(){
     }
 
     function enableUsers(event){
-
         try{
-            api.put(`usersdisabled/${profile.id}`, {
-                 headers: {'x-access-token': token }
+            api.put(`usersdisabled/${profile.id}`, {}, {
+                headers: { 
+                    'x-access-token': token
+                } 
             });
 
             getVacinasPorUsuario();
